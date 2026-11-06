@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Under Construction</title>
+  <meta name="description" content="My portfolio is taking off soon. Under construction." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-top: #000000;
+      --bg-bottom: #0d0d0f;
+      --text: #f2f2f2;
+      --muted: #9a9aa3;
+      --accent: #ffb547;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: radial-gradient(ellipse at center, var(--bg-bottom) 0%, var(--bg-top) 70%);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    /* Drifting clouds */
+    .cloud {
+      position: absolute;
+      left: -260px;
+      width: 220px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 60px;
+      filter: blur(2px);
+      animation: drift linear infinite;
+    }
+    .cloud::before, .cloud::after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud::before { width: 90px; height: 90px; top: -45px; left: 30px; }
+    .cloud::after  { width: 120px; height: 120px; top: -65px; left: 85px; }
+
+    .cloud:nth-child(1) { top: 15%; animation-duration: 38s; animation-delay: -5s; }
+    .cloud:nth-child(2) { top: 40%; animation-duration: 52s; animation-delay: -30s; transform: scale(0.7); }
+    .cloud:nth-child(3) { top: 70%; animation-duration: 44s; animation-delay: -18s; transform: scale(1.2); }
+    .cloud:nth-child(4) { top: 85%; animation-duration: 60s; animation-delay: -45s; transform: scale(0.5); }
+
+    @keyframes drift {
+      to { left: calc(100% + 260px); }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .plane-wrap {
+      position: relative;
+      animation: hover 4s ease-in-out infinite;
+    }
+
+    .plane {
+      width: min(320px, 70vw);
+      height: auto;
+      filter: drop-shadow(0 0 30px rgba(255, 181, 71, 0.08));
+    }
+
+    /* Wind trails behind the plane */
+    .trail {
+      position: absolute;
+      height: 2px;
+      right: 92%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+      border-radius: 2px;
+      animation: whoosh 1.2s linear infinite;
+    }
+    .trail:nth-of-type(1) { top: 42%; width: 120px; }
+    .trail:nth-of-type(2) { top: 55%; width: 80px; animation-delay: 0.4s; }
+    .trail:nth-of-type(3) { top: 64%; width: 100px; animation-delay: 0.8s; }
+
+    @keyframes hover {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-18px) rotate(2deg); }
+    }
+
+    @keyframes whoosh {
+      0%   { transform: translateX(40px); opacity: 0; }
+      30%  { opacity: 1; }
+      100% { transform: translateX(-80px); opacity: 0; }
+    }
+
+    .propeller {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: spin 0.15s linear infinite;
+    }
+    @keyframes spin {
+      0%   { transform: scaleY(1); }
+      50%  { transform: scaleY(0.15); }
+      100% { transform: scaleY(1); }
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      max-width: 34ch;
+      line-height: 1.5;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(255, 181, 71, 0.4);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div aria-hidden="true">
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+  </div>
+
+  <main>
+    <div class="plane-wrap" aria-hidden="true">
+      <span class="trail"></span>
+      <span class="trail"></span>
+      <span class="trail"></span>
+      <svg class="plane" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Horizontal stabilizer -->
+        <rect x="28" y="96" width="44" height="6" rx="3" fill="#b9c3cf" />
+        <!-- Tail fin -->
+        <path d="M66 98 L42 54 Q40 50 46 50 L58 50 L92 94 Z" fill="#d9dee5" />
+        <path d="M44 52 L58 52 L66 62 L49 62 Z" fill="#ffb547" />
+        <!-- Fuselage -->
+        <path d="M250 86 L214 86 L198 76 L146 76 L134 86 L66 94 L34 96 L34 104 L70 108 L140 120 L246 120 Q258 120 258 103 Q258 86 250 86 Z" fill="#f2f4f7" />
+        <!-- Accent stripe -->
+        <path d="M38 101 L72 104 L140 112 L256 112 L257 107 L140 107 L72 99 L38 98 Z" fill="#ffb547" />
+        <!-- Engine cowling -->
+        <path d="M232 86 L250 86 Q258 86 258 103 Q258 120 246 120 L232 120 Z" fill="#c9cfd8" />
+        <g stroke="#8d96a3" stroke-width="1.5" stroke-linecap="round">
+          <line x1="240" y1="110" x2="252" y2="110" />
+          <line x1="240" y1="114" x2="252" y2="114" />
+        </g>
+        <!-- Windshield & cabin windows -->
+        <path d="M198 78 L212 88 L196 88 Z" fill="#2a3442" />
+        <path d="M152 80 L192 80 L192 94 L150 94 Z" fill="#2a3442" />
+        <line x1="172" y1="80" x2="172" y2="94" stroke="#f2f4f7" stroke-width="3" />
+        <!-- High wing -->
+        <rect x="134" y="68" width="92" height="9" rx="4.5" fill="#dfe4ea" />
+        <!-- Wing strut -->
+        <line x1="150" y1="114" x2="190" y2="76" stroke="#9aa4b1" stroke-width="3" stroke-linecap="round" />
+        <!-- Main landing gear -->
+        <path d="M196 118 L186 140" stroke="#9aa4b1" stroke-width="4" stroke-linecap="round" />
+        <circle cx="186" cy="142" r="8" fill="#1c1f24" stroke="#4a515c" stroke-width="2" />
+        <circle cx="186" cy="142" r="2.5" fill="#9aa4b1" />
+        <!-- Tail wheel -->
+        <line x1="62" y1="106" x2="56" y2="114" stroke="#9aa4b1" stroke-width="2" />
+        <circle cx="55" cy="116" r="3.5" fill="#1c1f24" stroke="#4a515c" stroke-width="1.5" />
+        <!-- Spinner -->
+        <path d="M258 92 Q274 103 258 114 Z" fill="#ffb547" />
+        <!-- Propeller -->
+        <g class="propeller">
+          <path d="M268 103 Q264 82 268 58 Q272 82 268 103 Q264 124 268 148 Q272 124 268 103 Z" fill="#e8e8ea" opacity="0.85" />
+        </g>
+        <circle cx="268" cy="103" r="2.5" fill="#1c1f24" />
+      </svg>
+    </div>
+
+    <span class="badge"><span class="dot"></span>Under construction</span>
+    <h1>Something is taking off soon</h1>
+    <p>My portfolio is currently being built. Check back shortly for the full flight.</p>
+  </main>
+</body>
+</html>

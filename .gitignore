@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output (Astro)
+dist/
+.astro/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Cloudflare
+.wrangler/
